@@ -48,7 +48,7 @@ public class TestNGDemo {
     public void clearInputTest() {
         clearTextInput.clear();
         Assert.assertTrue(ExpectedConditions.attributeToBe(clearTextInput, "value", "")
-                .apply(driver));
+                .apply(driver));//asdasdasd
     }
 
     @Test

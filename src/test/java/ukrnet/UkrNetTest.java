@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.MailinatorInboxPage;
+import pages.MyException;
 import testdata.User;
 
 public class UkrNetTest {
@@ -31,7 +33,13 @@ public class UkrNetTest {
         homePage.clickWriteLetter();
         homePage.writeLetter("lperevonyktest@mailinator.com", "qwerty", "test body");
         homePage.sendLetter();
-
+        Assert.assertTrue(homePage.getTextLetterIsSend("Ваш лист надіслано"));
+        MailinatorInboxPage mailinatorInboxPage = new MailinatorInboxPage(driver);
+        mailinatorInboxPage.navigate();
+        mailinatorInboxPage.goToInbox("lperevonyktest");
+        mailinatorInboxPage.waitUntilJsIsReady();
+        mailinatorInboxPage.waitUntilLettersIsDisplayed();
+        mailinatorInboxPage.clickLastLetter();
     }
 
 }

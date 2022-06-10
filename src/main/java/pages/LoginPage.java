@@ -15,10 +15,6 @@ public class LoginPage extends BasePage {
         pageUrl = "https://mail.ukr.net/";
     }
 
-    public void navigate() {
-        driver.get(pageUrl);
-    }
-
     public void login(User user) {
         driver.findElement(loginField).sendKeys(user.getLogin());
         driver.findElement(passwordField).sendKeys(user.getPassword());

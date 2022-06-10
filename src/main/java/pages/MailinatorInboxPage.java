@@ -18,7 +18,6 @@ public class MailinatorInboxPage extends BasePage {
     }
 
     public void clickLastLetter() {
-//        waitUntilLettersIsDisplayed();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(lastLetter));
         driver.findElement(lastLetter).click();
     }

@@ -1,6 +1,9 @@
 package ukrnet;
 
+import exceptions.MyCheckedException;
+import exceptions.MyUncheckedException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -11,6 +14,13 @@ import pages.MailinatorInboxPage;
 import pages.MyException;
 import testdata.User;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.Duration;
+import java.util.List;
+import java.util.MissingFormatArgumentException;
+
 public class UkrNetTest {
 
     private WebDriver driver;
@@ -19,6 +29,7 @@ public class UkrNetTest {
     public void setUp() {
         System.setProperty("selenium.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Test
@@ -31,7 +42,7 @@ public class UkrNetTest {
         homePage.waitUntilLoaded();
 
         homePage.clickWriteLetter();
-        homePage.writeLetter("lperevonyktest@mailinator.com", "qwerty", "test body");
+        homePage.writeLetter("lperevonyktest@mailinator.com", "qwerty", "test body ");
         homePage.sendLetter();
         Assert.assertTrue(homePage.getTextLetterIsSend("Ваш лист надіслано"));
         MailinatorInboxPage mailinatorInboxPage = new MailinatorInboxPage(driver);
@@ -41,6 +52,14 @@ public class UkrNetTest {
         mailinatorInboxPage.waitUntilLettersIsDisplayed();
         mailinatorInboxPage.clickLastLetter();
     }
+
+    @Test
+    public void stringFormat() {
+        String text = "My name is: %s, and my age is: %s";
+        String newText = String.format(text, "Leo", 24);
+        System.out.println(newText);
+    }
+
 
 }
 

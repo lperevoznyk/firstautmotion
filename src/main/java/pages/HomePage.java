@@ -34,19 +34,9 @@ public class HomePage extends BasePage {
     }
 
     public void clickWriteLetter() {
-        long millisBefore = new Date().getTime();
-//        new FluentWait<WebDriver>(driver)
-//                .pollingEvery(Duration.ofMillis(500))
-//                .ignoring(NoSuchElementException.class)
-//                .withTimeout(Duration.ofSeconds(5))
-//                .until(ExpectedConditions.visibilityOf(writeLetterButtonElement));
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(writeLetterButtonElement));
-        } finally {
-            long millisAfter = new Date().getTime();
-            System.out.println("Total wait timeout: '" + (millisAfter - millisBefore) / 1000 + "'");
-        }
-        driver.findElement(writeLetterButton).click();
+        webDriverWait
+                .until(ExpectedConditions.elementToBeClickable(writeLetterButtonElement))
+                .click();
     }
 
     public void writeLetter(String to, String subject, String body) {
@@ -67,6 +57,11 @@ public class HomePage extends BasePage {
     public boolean getTextLetterIsSend(String expectedText) {
         return webDriverWait.until(ExpectedConditions.textMatches(letterIsSend,
                 Pattern.compile("^" + expectedText + "\n.*")));
+    }
+
+    @Override
+    public String getPageUrl() {
+        return "qwe";
     }
 
 }

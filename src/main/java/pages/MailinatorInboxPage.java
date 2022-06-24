@@ -1,10 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+
+import java.time.Duration;
 
 public class MailinatorInboxPage extends BasePage {
 
@@ -18,31 +18,17 @@ public class MailinatorInboxPage extends BasePage {
     }
 
     public void clickLastLetter() {
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(lastLetter));
+        new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofMillis(200))
+                .ignoring(NoSuchElementException.class)
+                .until(ExpectedConditions.elementToBeClickable(lastLetter));
+
         driver.findElement(lastLetter).click();
     }
 
     public void goToInbox(String inbox) {
         driver.findElement(inboxField).sendKeys(inbox);
         driver.findElement(goButton).click();
-    }
-
-    public void waitUntilLettersIsDisplayed() {
-        for (int i = 0; i < 8; i++) {
-            System.out.println(i);
-            try {
-                if (driver.findElement(lastLetter).isDisplayed()) {
-                    return;
-                }
-            } catch (NoSuchElementException e) {
-                System.out.println(e.getMessage());
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-        throw new TimeoutException();
     }
 }

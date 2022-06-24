@@ -1,5 +1,7 @@
 package testdata;
 
+import javax.annotation.Nonnull;
+
 public class User {
 
     private String login;

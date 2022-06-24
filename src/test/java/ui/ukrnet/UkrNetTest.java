@@ -1,36 +1,16 @@
-package ukrnet;
+package ui.ukrnet;
 
-import exceptions.MyCheckedException;
-import exceptions.MyUncheckedException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.MailinatorInboxPage;
-import pages.MyException;
+import pages.mailinator.MailinatorInboxPage;
+import pages.ukrnet.HomePage;
+import pages.ukrnet.LoginPage;
 import testdata.User;
+import ui.BaseTest;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.time.Duration;
-import java.util.List;
-import java.util.MissingFormatArgumentException;
-
-public class UkrNetTest {
-
-    private WebDriver driver;
-
-    @BeforeClass
-    public void setUp() {
-        System.setProperty("selenium.chrome.driver", "chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
+public class UkrNetTest extends BaseTest {
 
     @Test
     public void sendEmailToMailinatorTest() {
@@ -53,13 +33,12 @@ public class UkrNetTest {
         mailinatorInboxPage.clickLastLetter();
     }
 
-    @Test
+    @Test(groups = "exclude-me")
     public void stringFormat() {
         String text = "My name is: %s, and my age is: %s";
         String newText = String.format(text, "Leo", 24);
         System.out.println(newText);
     }
-
 
 }
 

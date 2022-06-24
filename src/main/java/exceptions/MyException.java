@@ -1,4 +1,4 @@
-package pages;
+package exceptions;
 
 public class MyException extends Exception {
 

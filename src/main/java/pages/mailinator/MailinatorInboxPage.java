@@ -1,10 +1,11 @@
-package pages;
+package pages.mailinator;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
+import pages.BasePage;
 
 public class MailinatorInboxPage extends BasePage {
 

@@ -1,7 +1,8 @@
-package pages;
+package pages.ukrnet;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.BasePage;
 import testdata.User;
 
 public class LoginPage extends BasePage {

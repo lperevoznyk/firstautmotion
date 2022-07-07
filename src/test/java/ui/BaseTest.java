@@ -13,6 +13,7 @@ public class BaseTest {
     public void parentSetUp() {
         System.setProperty("selenium.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         System.out.println("Base test before");
     }
 

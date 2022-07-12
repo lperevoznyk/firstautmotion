@@ -1,0 +1,18 @@
+{
+  "id": 0,
+  "category": {
+    "id": 0,
+    "name": "cats"
+  },
+  "name": "Barsik",
+  "photoUrls": [
+    "none"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "grey"
+    }
+  ],
+  "status": "available"
+}

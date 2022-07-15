@@ -11,7 +11,7 @@ public class TheInternetLoginTest extends BaseTest {
 
     //valid login: tomsmith
     //valid password: SuperSecretPassword!
-    @Test(description = "Error message should appears if user enters invalid credentials",
+    @Test(testName = "First test",description = "Error message should appears if user enters invalid credentials",
             dataProvider = "user-credentials", dataProviderClass = DataProviders.class)
     public void errorMessageShouldAppears(String login, String password, String errorMessage) {
         User user = new User(login, password);
@@ -21,7 +21,7 @@ public class TheInternetLoginTest extends BaseTest {
         Assert.assertEquals(theInternetLoginPage.getErrorMessage(), errorMessage);
     }
 
-    @Test(groups = "exclude-me")
+    @Test(testName = "Second name",groups = "exclude-me")
     public void arrayTest() {
         int[][] array = new int[4][6];
         for (int i = 0; i < array.length; i++) {

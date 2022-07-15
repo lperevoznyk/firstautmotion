@@ -8,9 +8,15 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import io.restassured.specification.RequestSpecification;
 import lombok.SneakyThrows;
+import org.assertj.core.api.Assertions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RestAssuredExample {
 
@@ -20,9 +26,9 @@ public class RestAssuredExample {
     @BeforeClass
     public void setup() {
         requestSpecification = new RequestSpecBuilder()
-                        .setBaseUri(BASE_URL)
-                        .addHeader("Content-Type", "application/json")
-                        .build();
+                .setBaseUri(BASE_URL)
+                .addHeader("Content-Type", "application/json")
+                .build();
     }
 
     @Test
@@ -63,8 +69,29 @@ public class RestAssuredExample {
         //from json to java obj
         PetDto responsePet = new ObjectMapper().readValue(jsonResponsePet.prettify(), PetDto.class);
 
-        Assert.assertEquals(requestPet, responsePet);
+        assertThat(responsePet)
+                .as("DTO should be equal")
+                .usingRecursiveComparison()
+                .isEqualTo(requestPet);
 
+    }
+
+    @Test
+    public void collectionTest() {
+        List<String> actualCollection = new ArrayList<>();
+        actualCollection = List.of("one", "two", "three", "four");
+
+        List<String> expectedCollection = new ArrayList<>();
+        expectedCollection = List.of("two", "one", "four", "three");
+
+        //search "Java"
+        assertThat(actualCollection)
+                .noneMatch(RestAssuredExample::isStringEmpty)
+                .hasSize(4);
+    }
+
+    private static boolean isStringEmpty(String myString) {
+        return myString.length() == 0;
     }
 
 }

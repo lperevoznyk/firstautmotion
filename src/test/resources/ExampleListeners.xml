@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="The internet suite">
+    <listeners>
+        <listener class-name="liseners.TestListener"/>
+    </listeners>
+    <test name="The internet" >
+        <packages>
+            <package name="ui.theinternet" />
+        </packages>
+    </test>
+</suite>

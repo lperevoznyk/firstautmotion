@@ -1,6 +1,5 @@
-package ui.restassureddemo;
+package api.restassureddemo;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dto.PetDto;
 import io.restassured.RestAssured;
@@ -8,8 +7,6 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import io.restassured.specification.RequestSpecification;
 import lombok.SneakyThrows;
-import org.assertj.core.api.Assertions;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
